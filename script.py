@@ -3,20 +3,30 @@ import numpy as np
 import matplotlib.patches as mpatches
 from matplotlib.collections import PatchCollection
 import matplotlib.lines as mlines
+from django.http import HttpResponse
 import matplotlib.pyplot as plt
+from django.conf import settings
 
-def draw(data, src):
-	collection, lines = create_collection(data)
+def draw(data, src=""):
+    collection, lines = create_collection(data)
 
-	fig, axs = plt.subplots()
-	fig.set_figwidth(10)
-	fig.set_figheight(5)
+    fig, axs = plt.subplots()
+    fig.set_figwidth(10)
+    fig.set_figheight(5)
 
-	axs.add_collection(collection)
-	[axs.add_line(line) for line in lines]
+    axs.add_collection(collection)
+    [axs.add_line(line) for line in lines]
 
-	plt.axis('auto')
-	plt.savefig(src)
+    plt.axis('auto')
+
+    if src or settings.DEBUG or settings.IS_TESTING:
+        plt.savefig(src if src else settings.EXAMPLE_PNG_SRC)
+
+    response = HttpResponse(content_type='image/png')
+    plt.savefig(response, format='png')
+    plt.close()
+
+    return response
 
 def create_collection(data):
     l = len(data)
@@ -63,8 +73,8 @@ if __name__ == "__main__":
 	    {'Open': 150, 'High': 200, 'Low': 140, 'Close': 200},
 	    {'Open': 220, 'High': 240, 'Low': 130, 'Close': 130},
 	    {'Open': 140, 'High': 170, 'Low': 120, 'Close': 120},
-	    {'Open': 110, 'High': 110, 'Low': 90, 'Close': 95},
+	    {'Open': 110, 'High': 110, 'Low': 90, 'Close': 0},
 	]
-	draw(data, "example.png")
+	draw(data, settings.EXAMPLE_PNG_SRC)
 
 	
