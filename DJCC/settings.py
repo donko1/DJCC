@@ -25,6 +25,35 @@ SECRET_KEY = 'django-insecure-izy9gmpr@k85n+ct9kgddslllbx*p5rf=sd)h6htpqwx)4bfju
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGGING_LEVEL = 'DEBUG'
+LOGGING = {
+   'version': 1,
+   'filters': {
+       'require_debug_false': {
+           '()': 'django.utils.log.RequireDebugFalse',
+       },
+   },
+   'handlers': {
+       'file': {
+           'level': 'DEBUG',
+           'class': 'logging.handlers.RotatingFileHandler',
+           'filename': 'log.log',
+           'maxBytes': 1024 * 1024 * 5,  # 5 MB
+           'backupCount': 5,
+       },
+   },
+   'loggers': {
+       'DJCC': {
+           'handlers': ['file'],
+           'level': 'DEBUG',
+           'filters': ['require_debug_false'],
+       },
+   },
+}
+
+
+   
+
 EXAMPLE_PNG_SRC = "example.png"
 IS_TESTING = 'test' in sys.argv
 
