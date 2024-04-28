@@ -1,8 +1,9 @@
 # Hello! This site will allow u to draw a chart using Japanese candlesticks
 ## Installing:
 ### Linux:
-- Download python3
+- Download python3 and git
 ```bash
+sudo apt install git
 sudo apt install python3
 ```
 - Clone repo
