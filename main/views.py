@@ -22,4 +22,13 @@ def draw_from_request(request):
     for entry in data:
         formatted_data.append(eval(entry))
 
-    return draw(formatted_data)
+    response = HttpResponse(content_type="image/png")
+
+    draw(formatted_data, "img.png")
+
+    with open("img.png", "rb") as f:
+        data = f.read()
+
+    response.write(data)
+
+    return response
