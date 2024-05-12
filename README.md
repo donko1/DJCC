@@ -8,7 +8,7 @@ sudo apt install python3
 ```
 - Clone repo
 ```bash
-git clone git@github.com:donko1/DJCC.git
+git clone https://github.com/donko1/DJCC.git
 ```
 - Make ur own venv
 ```bash
@@ -29,7 +29,7 @@ Now its working!
 - Download [python3](https://www.python.org/)
 - Download repo(or zip way if u dont have git):
 ```bash
-git clone git@github.com:donko1/DJCC.git
+git clone https://github.com/donko1/DJCC.git
 ```
 - Make ur own venv
 ```bash
