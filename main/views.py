@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 from django.views.decorators.http import require_http_methods
 from script import draw
+from django.conf import settings
 import logging
 
 logger = logging.getLogger('DJCC')
@@ -24,9 +25,9 @@ def draw_from_request(request):
 
     response = HttpResponse(content_type="image/png")
 
-    draw(formatted_data, "img.png")
+    draw(formatted_data, settings.EXAMPLE_PNG_SRC)
 
-    with open("img.png", "rb") as f:
+    with open(settings.EXAMPLE_PNG_SRC, "rb") as f:
         data = f.read()
 
     response.write(data)
