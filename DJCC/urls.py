@@ -16,10 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 from django.shortcuts import render
+from django.views.static import serve
 
 urlpatterns = [
     path("api/", include("main.urls")),
     path('admin/', admin.site.urls),
     path('', lambda request: render(request, 'index.html')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('media/<path:path>', serve, {'document_root': settings.MEDIA_ROOT}),
+    ]
+
