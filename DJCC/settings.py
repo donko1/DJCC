@@ -60,7 +60,7 @@ LOGGING = {
 
    
 
-EXAMPLE_PNG_SRC = "example.png"
+EXAMPLE_PNG_SRC = "DJCC/media/example.png"
 IS_TESTING = 'test' in sys.argv
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']

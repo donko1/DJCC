@@ -44,7 +44,7 @@ class DrawTest(TestCase):
 
 class ImageTest(TestCase):
     def test_images_equal(self):
-        src1 = 'testing.png'  
+        src1 = 'DJCC/media/testing.png'  
         src2 = settings.EXAMPLE_PNG_SRC
 
         image1 = Image.open(src1)
