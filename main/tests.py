@@ -59,3 +59,10 @@ class MyViewTest(TestCase):
     def test_returns_400(self):
         response = self.client.get('/api/draw_from_request/')
         self.assertEqual(response.status_code, 400)
+
+class AppTests(TestCase):
+
+    def test_index_page(self):
+        response = self.client.get('/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, '<h1 class="title">DJCC</h1>')
