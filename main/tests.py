@@ -5,17 +5,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from PIL import Image
 import numpy as np
-from .views import (draw_from_request, hello_world)
-
-
-class HelloWorldTest(TestCase):
-    def test_hello_world_view(self):
-        url = reverse('hello_world')  
-        response = hello_world(self.client.get(url))  
-
-        self.assertIsInstance(response, HttpResponse)  
-        self.assertEqual(response.status_code, 200)  
-        self.assertEqual(response.content.decode('utf-8'), 'Hello world')  
+from .views import (draw_from_request, )
 
 
 

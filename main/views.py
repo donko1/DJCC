@@ -1,35 +1,33 @@
-
-from django.shortcuts import render
-from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
-from django.views.decorators.http import require_http_methods
-from script import draw
+from django.http import HttpResponse, HttpResponseBadRequest
 from django.conf import settings
 import logging
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response 
+
+from script import draw
+
 logger = logging.getLogger('DJCC')
+HTTP_400_BAD_REQUEST = 400
 
-def hello_world(request):
-	return HttpResponse("Hello world")
-
-@require_http_methods(["GET"])
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def draw_from_request(request):
     data = request.GET.getlist('data[]')
 
     if not data:
-    	return HttpResponseBadRequest("Uncorrect GET request")
+        return Response("Uncorrect GET request", status=HTTP_400_BAD_REQUEST)
 
     logger.debug(f"Get data: {data}\n")
     formatted_data = []
     for entry in data:
         formatted_data.append(eval(entry))
 
-    response = HttpResponse(content_type="image/png")
-
-    draw(formatted_data, settings.EXAMPLE_PNG_SRC)
+    data = formatted_data
+    draw(data, settings.EXAMPLE_PNG_SRC)
 
     with open(settings.EXAMPLE_PNG_SRC, "rb") as f:
         data = f.read()
 
-    response.write(data)
-
-    return response
+    return HttpResponse(data, content_type="image/png")
