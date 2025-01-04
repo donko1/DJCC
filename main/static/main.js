@@ -26,3 +26,56 @@ setInterval(() => {
     container.appendChild(newElems[2]);
   });
 }, 7000);
+
+// function getLang() {
+//   const cookie = document.cookie
+//     .split("; ")
+//     .find((row) => row.startsWith(`lang=`));
+//   return cookie ? cookie.split("=")[1] : "en";
+// }
+// function CWBL(en_v, ru_v, lang) {
+//   switch (lang) {
+//     case "ru":
+//       return ru_v;
+//     case "en":
+//       return en_v;
+//   }
+// }
+
+// function useCookie(cookieName, defaultValue) {
+//   let value = localStorage.getItem(cookieName) || defaultValue;
+
+//   const setCookieValue = (newValue) => {
+//     localStorage.setItem(cookieName, newValue);
+//     value = newValue;
+//   };
+
+//   return [value, setCookieValue];
+// }
+
+
+// function LanguageButton() {
+//   const [value, setValue] = useCookie("lang", "en");
+
+//   const changeLang = (newValue) => {
+//     setValue(newValue);
+//   };
+//   const ruB = document.createElement("button")
+//   const enB = document.createElement("button")
+//   ruB.textContent = "Ru"
+//   enB.textContent = "En"
+//   var div = document.createElement("div")
+//   div.classList.add("langButtons")
+//   enB.addEventListener("click", () => changeLang("en"))
+//   ruB.addEventListener("click", () => changeLang("ru"))
+//   if (value === "en"){
+//     div.appendChild(enB)
+//   }
+//   else {
+//     div.appendChild(ruB)
+//   }
+//   return div
+// }
+
+
+// document.getElementsByClassName("parallax-content")[0].appendChild(LanguageButton())

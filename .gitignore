@@ -2,3 +2,4 @@ log.log
 example.png
 venv/
 img.png
+*.sqlite3
